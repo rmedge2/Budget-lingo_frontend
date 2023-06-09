@@ -53,7 +53,7 @@ const MainPage = () => {
             amount: amount,
             time: time
         }
-        setLogs([...logData, newLog])
+        setLogs([newLog,...logData])
 
         postData(newLog)
 
@@ -64,7 +64,7 @@ const MainPage = () => {
 
     const showData = async () => {
         const data = await getLogs()
-        setLogs(data)
+        setLogs(data.reverse())
     }
     
 
@@ -72,6 +72,9 @@ const MainPage = () => {
         setOpen(open[0]=='flex'?['none','+']:['flex','-'])
     }
 
+    const resolveSubTotal = () => {
+        
+    }
 
     useEffect(() => {
         showData()
@@ -90,7 +93,7 @@ const MainPage = () => {
             
             <div id="log-area">
                 {logData?logData.map(log => (
-                    <Log key={log.time}  name={shorten(log.name)} amount={log.amount} time={log.time}/>
+                    <Log  key={log.time}  name={log.name} amount={log.amount} time={log.time}/>
                 )):null}
             </div>
         </div>

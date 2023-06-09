@@ -4,7 +4,7 @@ import BalanceData from './BalanceData'
 import './Log.css'
 const Log = (props) => {
 
-    const { convertDate } = useContext(BalanceData)
+    const { convertDate, shorten } = useContext(BalanceData)
     
     const determineColor = value => {
         if (value > 0)
@@ -16,9 +16,9 @@ const Log = (props) => {
     
     return (
         <div className='log-box'>
-            <div className='log'>
+            <div className='log' title={props.name}>
                 <div className='name-amount'>
-                    <h3 className='log-name'>{props.name}</h3>
+                    <h3 className='log-name'>{shorten(props.name)}</h3>
                     <h6 className='log-amount' style={{ color: determineColor(props.amount) }}>${props.amount}</h6>
                 </div>
                 <div className='date-total'>
