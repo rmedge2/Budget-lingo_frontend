@@ -27,11 +27,12 @@ function App() {
     const newDate = Date(date)
     const dateLine=[...newDate.split(' ')].splice(1,3)
     return dateLine.join(' ')
-}
+  }
+
   
   return (
     <div className="App">
-      <BalanceData.Provider value={{ logData, setLogs, getLogs, convertDate }}>
+      <BalanceData.Provider value={{ logData, setLogs, getLogs, convertDate}}>
         <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />

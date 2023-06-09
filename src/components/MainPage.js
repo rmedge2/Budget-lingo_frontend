@@ -7,6 +7,8 @@ const MainPage = () => {
 
     const { logData, setLogs, getLogs } = useContext(BalanceData)
 
+    const[open,setOpen]=useState(['none','+'])
+
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [time, setTime] = useState(Date.now())
@@ -66,15 +68,20 @@ const MainPage = () => {
         setLogs(data)
     }
     
+
+    const switchOpen = () => {
+        setOpen(open[0]=='flex'?['none','+']:['flex','-'])
+    }
+
+
     useEffect(() => {
         showData()
     }, [])
     
-
-
     return (
         <div className='main-page-content'>
-            <div className='submit-area'>
+            <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
+            <div className='submit-area' style={{display:open[0]}}>
                 <input type="text" placeholder="input name" value={name} onInput={(e)=>setName(e.target.value)}/>
                 <input type="number" placeholder="input amount" value={amount} onInput={(e)=>setAmount(e.target.value)}/>
                 <input type="date" />

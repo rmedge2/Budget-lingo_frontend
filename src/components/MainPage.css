@@ -13,3 +13,17 @@ input{
     height: 28px;
     border-radius: 10px;
 }
+
+.submit-area{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-item{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 3px 10px;
+    background-color: rgb(39, 125, 255);
+    color: white;
+    margin-bottom: 10px;
+}
