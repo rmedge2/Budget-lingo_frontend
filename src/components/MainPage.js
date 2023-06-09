@@ -10,6 +10,7 @@ const MainPage = () => {
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [time, setTime] = useState(Date.now())
+    const [err, setError]=useState('')
     
     const clearData = () => {
         setName('');
@@ -33,6 +34,18 @@ const MainPage = () => {
     }
 
     const handleClick = () => {
+        if (!name && !amount)
+            return setError('No Data!')
+        if (!name) {
+            clearData()
+            return setError('Missing Name!')
+        }
+            
+        if (!amount) {
+            clearData()
+            return setError('Missing Amount!')
+        }
+            
         const newLog = {
             userId:1,
             name: name,
@@ -60,11 +73,15 @@ const MainPage = () => {
 
 
     return (
-        <div>
-            <input type="text" placeholder="input name" value={name} onInput={(e)=>setName(e.target.value)}/>
-            <input type="number" placeholder="input amount" value={amount} onInput={(e)=>setAmount(e.target.value)}/>
-            <input type="date" />
-            <button onClick={()=>handleClick()}>Submit</button>
+        <div className='main-page-content'>
+            <div className='submit-area'>
+                <input type="text" placeholder="input name" value={name} onInput={(e)=>setName(e.target.value)}/>
+                <input type="number" placeholder="input amount" value={amount} onInput={(e)=>setAmount(e.target.value)}/>
+                <input type="date" />
+                <button className='submit-button' onClick={() => handleClick()}>Submit</button>
+                <p style={{color:'red'}}>{err}</p>
+            </div>
+            
             <div id="log-area">
                 {logData?logData.map(log => (
                     <Log key={log.time}  name={log.name} amount={log.amount} time={log.time}/>
