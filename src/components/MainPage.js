@@ -25,6 +25,13 @@ const MainPage = () => {
         clearData()
     }
 
+    const convertDate = date => {
+        if (!date)
+            return ''
+        const newDate = Date(date)
+        const dateLine=[...newDate.split(' ')].splice(1,3)
+        return dateLine.join(' ')
+    }
     
     return (
         <div>
@@ -34,7 +41,7 @@ const MainPage = () => {
             <button onClick={()=>handleClick()}>Submit</button>
             <div id="log-area">
                 {logData.map(log => (
-                    <p key={log.name}>{log.name} {log.amount} {log.time}</p>
+                    <p key={log.name}>{log.name} {log.amount} {convertDate(log.time)}</p>
                 ))}
             </div>
         </div>

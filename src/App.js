@@ -8,6 +8,7 @@ import SplashScreen from './Components/SplashScreen';
 import BalanceData from './Components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import Overview from './Components/Overview';
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
           <Route path='/' element={<MainPage />} />
           <Route path='/mainpage' element={<MainPage />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/splashscreen' element={<SplashScreen/>} />
+          <Route path='/splashscreen' element={<SplashScreen />} />
+          <Route path='/overview' element={<Overview/>}/>
         </Routes>
       </BalanceData.Provider>
     </div>
