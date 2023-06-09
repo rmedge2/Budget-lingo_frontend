@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
+import Header from './Components/Header';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './components/MainPage';
-import LoginPage from './components/LogInPage';
-import SplashScreen from './components/SplashScreen';
+import MainPage from './Components/MainPage';
+import LoginPage from './Components/LogInPage';
+import SplashScreen from './Components/SplashScreen';
 import BalanceData from './components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
+
 
 function App() {
 
