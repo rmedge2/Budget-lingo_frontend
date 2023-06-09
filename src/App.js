@@ -13,6 +13,7 @@ import Overview from './Components/Overview';
 
 function App() {
 
+
   const [logData, setLogs] = useState([{name:'', amount: null, time:''}])
   
   return (
