@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import MainPage from './Components/MainPage';
 import LoginPage from './Components/LogInPage';
 import SplashScreen from './Components/SplashScreen';
-import BalanceData from './components/BalanceData'
+import BalanceData from './Components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
