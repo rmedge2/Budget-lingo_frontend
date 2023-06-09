@@ -1,9 +1,11 @@
+import './MainPage.css'
 import { useContext, useEffect, useState } from "react"
 import BalanceData from "./BalanceData"
+import Log from './Log'
 
 const MainPage = () => {
 
-    const { logData, setLogs } = useContext(BalanceData)
+    const { logData, setLogs, getLogs } = useContext(BalanceData)
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
@@ -44,17 +46,16 @@ const MainPage = () => {
         clearData()
     }
 
-    const convertDate = date => {
-        if (!date)
-            return ''
-        const newDate = Date(date)
-        const dateLine=[...newDate.split(' ')].splice(1,3)
-        return dateLine.join(' ')
+    
+
+    const showData = async () => {
+        const data = await getLogs()
+        setLogs(data)
     }
     
     useEffect(() => {
-        
-    }, [logData])
+        showData()
+    }, [])
     
 
 
@@ -65,9 +66,9 @@ const MainPage = () => {
             <input type="date" />
             <button onClick={()=>handleClick()}>Submit</button>
             <div id="log-area">
-                {logData.map(log => (
-                    <p key={log.name}>{log.name} {log.amount} {log.time}</p>
-                ))}
+                {logData?logData.map(log => (
+                    <Log key={log.time}  name={log.name} amount={log.amount} time={log.time}/>
+                )):null}
             </div>
         </div>
     )

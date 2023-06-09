@@ -14,11 +14,24 @@ import Overview from './Components/Overview';
 function App() {
 
 
-  const [logData, setLogs] = useState([{name:'', amount: null, time:''}])
+  const [logData, setLogs] = useState([{ name: '', amount: null, time: '' }])
+  
+  const getLogs = () => {
+    return fetch('http://localhost:3000/logs')
+      .then(res => res.json())
+  }
+
+  const convertDate = date => {
+    if (!date)
+        return ''
+    const newDate = Date(date)
+    const dateLine=[...newDate.split(' ')].splice(1,3)
+    return dateLine.join(' ')
+}
   
   return (
     <div className="App">
-      <BalanceData.Provider value={{ logData, setLogs }}>
+      <BalanceData.Provider value={{ logData, setLogs, getLogs, convertDate }}>
         <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />
