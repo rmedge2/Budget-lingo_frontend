@@ -1,5 +1,5 @@
 .log{
-    margin-bottom: 20px;
+    margin-right: 20px;
     width: 300px;
 }
 .name-amount,.date-total{
@@ -10,4 +10,19 @@
 
 .log-date, .log-total{
     color: rgb(97, 96, 96);
+}
+.log-box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.edit{
+    border: 2px solid gray;
+    border-radius: 9px;
+    
+}
+
+.edit-icon{
+    width: 25px;
+    padding-bottom: 20px;
 }
