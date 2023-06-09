@@ -7,3 +7,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.log-date, .log-total{
+    color: rgb(97, 96, 96);
+}
