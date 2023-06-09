@@ -5,7 +5,7 @@ import Log from './Log'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten } = useContext(BalanceData)
 
     const[open,setOpen]=useState(['none','+'])
 
@@ -22,7 +22,6 @@ const MainPage = () => {
 
     const postData = data => {
         const jsonData = JSON.stringify(data)
-        console.log(jsonData)
         fetch('http://localhost:3000/logs',
             {
                 method: 'POST',
@@ -91,7 +90,7 @@ const MainPage = () => {
             
             <div id="log-area">
                 {logData?logData.map(log => (
-                    <Log key={log.time}  name={log.name} amount={log.amount} time={log.time}/>
+                    <Log key={log.time}  name={shorten(log.name)} amount={log.amount} time={log.time}/>
                 )):null}
             </div>
         </div>

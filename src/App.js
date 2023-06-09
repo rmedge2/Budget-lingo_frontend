@@ -29,10 +29,13 @@ function App() {
     return dateLine.join(' ')
   }
 
+  const shorten = words => {
+        return words.length<15?words:`${words.substring(0,15)}...`
+  }
   
   return (
     <div className="App">
-      <BalanceData.Provider value={{ logData, setLogs, getLogs, convertDate}}>
+      <BalanceData.Provider value={{ logData, setLogs, getLogs, convertDate, shorten}}>
         <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />
