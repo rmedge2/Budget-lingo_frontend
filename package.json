@@ -9,11 +9,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-router-dom": "^6.12.1",
-=======
-    "react-router-dom": "^6.12.0",
->>>>>>> 98f0e0bf56df171f62fa67b037a0eb07a70f0d9a
+
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
