@@ -37,6 +37,7 @@ const MainPage = () => {
     }
 
     const handleClick = () => {
+        const usrId=localStorage.getItem('currentUser')
         if (!name && !amount)
             return setError('No Data!')
         if (!name) {
@@ -48,9 +49,10 @@ const MainPage = () => {
             clearData()
             return setError('Missing Amount!')
         }
-            
+        if (!usrId)
+            return setError('Not logged in!')    
         const newLog = {
-            userId:1,
+            userId:usrId,
             name: name,
             amount: amount,
             time: time
