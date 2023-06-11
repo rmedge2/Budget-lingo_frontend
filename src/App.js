@@ -15,10 +15,16 @@ function App() {
 
 
   const [logData, setLogs] = useState([{ name: '', amount: null, time: '' }])
+  const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney]=useState(0)
   
   const getLogs = () => {
     return fetch('http://localhost:3000/logs')
+      .then(res => res.json())
+  }
+
+  const getUsers = () => {
+    return fetch('http://localhost:3000/users')
       .then(res => res.json())
   }
 
@@ -37,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs, convertDate, shorten, totalMoney, setTotalMoney }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney }
       }>
         <Header />
         <Routes>

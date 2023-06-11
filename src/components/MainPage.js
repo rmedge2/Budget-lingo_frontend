@@ -61,13 +61,13 @@ const MainPage = () => {
 
         clearData()
     }
-
     
 
     const showData = async () => {
         const data = await getLogs()
+        const usrId=localStorage.getItem('currentUser')
 
-        setLogs(data.reverse())
+        setLogs([...data.reverse()].filter(logs=>logs.userId==usrId))
     }
     
 
@@ -88,6 +88,7 @@ const MainPage = () => {
     
     useEffect(() => {
         showData()
+
     }, [])
 
     useEffect(() => {
