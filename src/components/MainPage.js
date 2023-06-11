@@ -5,14 +5,16 @@ import Log from './Log'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs, shorten } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney } = useContext(BalanceData)
 
     const[open,setOpen]=useState(['none','+'])
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [time, setTime] = useState(Date.now())
-    const [err, setError]=useState('')
+    const [err, setError] = useState('')
+    
+    const [runTotals, setRunningTotals]=useState([])
     
     const clearData = () => {
         setName('');
@@ -64,6 +66,7 @@ const MainPage = () => {
 
     const showData = async () => {
         const data = await getLogs()
+
         setLogs(data.reverse())
     }
     
@@ -72,16 +75,28 @@ const MainPage = () => {
         setOpen(open[0]=='flex'?['none','+']:['flex','-'])
     }
 
-    const resolveSubTotal = () => {
-        
+    const drawdata = (startFunds) => {
+        let runningTotals = [startFunds?startFunds:0];
+        for (let i = logData.length; i >= 0; i--){
+            if (i < logData.length)
+                runningTotals.unshift(runningTotals[0]+logData[i].amount)
+        }
+        setRunningTotals(runningTotals)
+        setTotalMoney(runningTotals[0])
     }
 
+    
     useEffect(() => {
         showData()
     }, [])
+
+    useEffect(() => {
+        drawdata()
+    }, [logData])
     
     return (
         <div className='main-page-content'>
+            Total: {totalMoney}
             <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
             <div className='submit-area' style={{display:open[0]}}>
                 <input type="text" placeholder="input name" value={name} onInput={(e)=>setName(e.target.value)}/>
@@ -92,8 +107,8 @@ const MainPage = () => {
             </div>
             
             <div id="log-area">
-                {logData?logData.map(log => (
-                    <Log  key={log.time}  name={log.name} amount={log.amount} time={log.time}/>
+                {logData?logData.map((log, index) => (
+                    <Log key={log.time} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
                 )):null}
             </div>
         </div>

@@ -23,7 +23,7 @@ const Log = (props) => {
                 </div>
                 <div className='date-total'>
                     <h5 className='log-date'>{convertDate(props.time)}</h5>
-                    <h6 className='log-total'>total</h6>
+                    <h6 className='log-total'>{props.total}</h6>
                 </div>
             </div>
             {/* <button className='edit'>edit</button> */}
