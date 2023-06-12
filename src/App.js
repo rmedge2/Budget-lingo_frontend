@@ -9,7 +9,7 @@ import BalanceData from './Components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import Overview from './Components/Overview';
-import Donut from './Components/SpendingReport';
+import SpendingReport from './Components/SpendingReport';
 
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/splashscreen' element={<SplashScreen />} />
           <Route path='/overview' element={<Overview/>}/>
-          <Route path='/spending-report' element={<Donut/>}/>
+          <Route path='/spending-report' element={<SpendingReport/>}/>
         </Routes>
       </BalanceData.Provider>
     </div>
