@@ -69,9 +69,13 @@ const MainPage = () => {
 
     const showData = async () => {
         const data = await getLogs()
-        const usrId=localStorage.getItem('currentUser')
+        const usrId = localStorage.getItem('currentUser')
+        const logss = [...data.reverse()].filter(logs => logs.userId == usrId);
+        const logByTime = logss.sort((a, b) => {
+            return b.time-a.time
+        });
 
-        setLogs([...data.reverse()].filter(logs=>logs.userId==usrId))
+        setLogs(logByTime)
     }
     
 
