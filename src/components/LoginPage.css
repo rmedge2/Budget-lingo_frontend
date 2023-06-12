@@ -5,3 +5,14 @@
     flex-direction: column;
     align-items: center;
 }
+.login-register{
+    
+    margin-top: 10px;
+}
+.login-register>button{
+    padding: 0px 10px;
+    margin: 0px 5px;
+    height: 28px;
+    border-radius: 10px;
+    
+}

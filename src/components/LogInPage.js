@@ -74,8 +74,10 @@ const LoginPage = () => {
                 </div>
                 <input type="text" onChange={e=>setPassword(e.target.value)}/>
             </div>
-            <button onClick={() => checkCredentials()}>Log in</button>
-            <button onClick={() => addUser({userName:username, passWord:password})}>Register</button>
+            <div className="login-register">
+                <button onClick={() => checkCredentials()}>Log in</button>
+                <button onClick={() => addUser({userName:username, passWord:password})}>Register</button>
+            </div>
             {err}
         </div>
     )
