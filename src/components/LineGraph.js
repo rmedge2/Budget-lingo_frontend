@@ -30,9 +30,9 @@ const LineGraph = () => {
     return (
         <div>
             <Chart
-              options={graphData.options}
-              series={graphData.series}
-              type="bar"
+              options={data.options}
+              series={data.series}
+              type="line"
               width="500"
             />
         </div>

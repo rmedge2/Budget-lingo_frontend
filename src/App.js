@@ -31,8 +31,10 @@ function App() {
 
   const convertDate = date => {
     if (!date)
-        return ''
-    const newDate = Date(date)
+      return ''
+    
+    let newDate = new Date(parseInt(date))
+    newDate=newDate.toString()
     const dateLine=[...newDate.split(' ')].splice(1,3)
     return dateLine.join(' ')
   }
