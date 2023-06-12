@@ -87,9 +87,11 @@ const MainPage = () => {
 
     const drawdata = (startFunds) => {
         let runningTotals = [startFunds ? startFunds : 0];
+        let thistotal = 0;
         for (let i = logData.length; i >= 0; i--) {
             if (i < logData.length)
-                runningTotals.unshift(runningTotals[0] + logData[i].amount)
+                thistotal = parseInt(runningTotals[0]) + parseInt(logData[i].amount);
+                runningTotals.unshift(thistotal)
         }
         setRunningTotals(runningTotals)
         setTotalMoney(runningTotals[0])
@@ -148,7 +150,7 @@ const MainPage = () => {
                 <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
                 <select placeholder='select category'>
                     {categoryOptions.map((option) => (
-                        <option value={option.value}>{option.label}</option>
+                        <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
                 </select>
                 <input type="date" onChange={e => handleTime(e.target.value)} />
@@ -158,7 +160,7 @@ const MainPage = () => {
 
             <div id="log-area">
                 {logData ? logData.map((log, index) => (
-                    <Log className='single-log' key={log.time} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
+                    <Log className='single-log' key={log.created_at} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
                 )) : null}
             </div>
         </div>
