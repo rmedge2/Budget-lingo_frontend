@@ -9,15 +9,16 @@ const MainPage = () => {
     const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink } = useContext(BalanceData)
 
     const [open, setOpen] = useState(['none', '+'])
-    
+
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
+    const [category, setCategory] = useState('')
     const [time, setTime] = useState(Date.now())
     const [err, setError] = useState('')
-    
-    const [runTotals, setRunningTotals]=useState([])
-    
+
+    const [runTotals, setRunningTotals] = useState([])
+
     const clearData = () => {
         setName('');
         setAmount('');
@@ -39,67 +40,68 @@ const MainPage = () => {
     }
 
     const handleClick = () => {
-        const usrId=localStorage.getItem('currentUser')
+        const usrId = localStorage.getItem('currentUser')
         if (!name && !amount)
             return setError('No Data!')
         if (!name) {
             clearData()
             return setError('Missing Name!')
         }
-            
+
         if (!amount) {
             clearData()
             return setError('Missing Amount!')
         }
         if (!usrId)
-            return setError('Not logged in!')    
+            return setError('Not logged in!')
         const newLog = {
-            userId:usrId,
+            userId: usrId,
             name: name,
             amount: amount,
+            category: category,
             time: time
         }
-        setLogs([newLog,...logData])
+        setLogs([newLog, ...logData])
 
         postData(newLog)
 
         clearData()
     }
-    
+
 
     const showData = async () => {
         const data = await getLogs()
         const usrId = localStorage.getItem('currentUser')
         const logss = [...data.reverse()].filter(logs => logs.userId == usrId);
         const logByTime = logss.sort((a, b) => {
-            return b.time-a.time
+            return b.time - a.time
         });
 
         setLogs(logByTime)
     }
-    
+
 
     const switchOpen = () => {
-        setOpen(open[0]=='flex'?['none','+']:['flex','-'])
+        setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
     }
 
     const drawdata = (startFunds) => {
-        let runningTotals = [startFunds?startFunds:0];
-        for (let i = logData.length; i >= 0; i--){
+        let runningTotals = [startFunds ? startFunds : 0];
+        for (let i = logData.length; i >= 0; i--) {
             if (i < logData.length)
-                runningTotals.unshift(runningTotals[0]+logData[i].amount)
+                runningTotals.unshift(runningTotals[0] + logData[i].amount)
         }
         setRunningTotals(runningTotals)
         setTotalMoney(runningTotals[0])
     }
 
     const handleTime = (val) => {
-        const dt=new Date(val)
+        const dt = new Date(val)
         console.log(dt.getTime())
         setTime(dt.getTime())
     }
 
-    
+
     useEffect(() => {
         showData()
 
@@ -108,25 +110,56 @@ const MainPage = () => {
     useEffect(() => {
         drawdata()
     }, [logData])
-    
+
+    const categoryOptions = [
+        {
+            label: "Select Category",
+            value: "Select Category"
+        },
+        {
+            label: "Rent",
+            value: "Rent"
+        },
+        {
+            label: "Groceries",
+            value: "Groceries"
+        },
+        {
+            label: "Transportation",
+            value: "Transportation"
+        },
+        {
+            label: "Bills",
+            value: "Bills"
+        },
+        {
+            label: "Entertainment",
+            value: "Entertainment"
+        }]
+
     return (
         <div className='main-page-content'>
-            <LineGraph/>
-            
+            <LineGraph />
+
             <h1>Total: ${totalMoney}</h1>
             <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
-            <div className='submit-area' style={{display:open[0]}}>
-                <input type="text" placeholder="input name" value={name} onInput={(e)=>setName(e.target.value)}/>
-                <input type="number" placeholder="input amount" value={amount} onInput={(e)=>setAmount(e.target.value)}/>
-                <input type="date" onChange={e=>handleTime(e.target.value)}/>
+            <div className='submit-area' style={{ display: open[0] }}>
+                <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
+                <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
+                <select placeholder='select category'>
+                    {categoryOptions.map((option) => (
+                        <option value={option.value}>{option.label}</option>
+                    ))}
+                </select>
+                <input type="date" onChange={e => handleTime(e.target.value)} />
                 <button className='submit-button' onClick={() => handleClick()}>Submit</button>
-                <p style={{color:'red'}}>{err}</p>
+                <p style={{ color: 'red' }}>{err}</p>
             </div>
-            
+
             <div id="log-area">
-                {logData?logData.map((log, index) => (
+                {logData ? logData.map((log, index) => (
                     <Log className='single-log' key={log.time} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
-                )):null}
+                )) : null}
             </div>
         </div>
     )
