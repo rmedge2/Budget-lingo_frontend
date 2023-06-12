@@ -10,7 +10,7 @@ const LoginPage = () => {
     const [err, setErr] = useState('')
     
 
-    const{getUsers, setUsers, userData, currUser, setCurrUser, baseLink}=useContext(BalanceData)
+    const{getUsers, setUsers, userData, currUser, setCurrUser, baseLink, frontLink}=useContext(BalanceData)
     
     const checkCredentials = () => {
         console.log(userData)
@@ -23,7 +23,7 @@ const LoginPage = () => {
         setCurrUser(user)
         setErr(`logged as ${username}!`)
         console.log('USER', user)
-        window.location.href=`${baseLink}mainpage`
+        window.location.href=`${frontLink}mainpage`
     }
 
     const addUser = async (data) => {
