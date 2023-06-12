@@ -1,10 +1,15 @@
 import './LineGraph.css'
 import Chart from "react-apexcharts";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import BalanceData from './BalanceData';
 
 const LineGraph = () => {
 
-    const [graphData, setGraphData]=useState({})
+    const [graphData, setGraphData] = useState({})
+    const [range, setRange] = useState('')
+    const [rangeValues, setRangeValues]=useState([])
+    
+    const {logData, convertDate}=useContext(BalanceData)
 
     const data = {
         options: {
@@ -12,20 +17,71 @@ const LineGraph = () => {
             id: "basic-bar"
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+            categories: range
           }
         },
         series: [
           {
             name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91]
+            data: rangeValues
           }
         ]
     };
+
+    const rangeGenerator = (span) => {
+        let d = new Date()
+        let dateRange;
+        let darr;
+        if (span == 'week') {
+            dateRange=[[...d.toDateString().split(' ')][0]]
+            for (let i = 1; i < 7; i++){
+                d.setDate(d.getDate() - 1)
+                darr=[...d.toDateString().split(' ')]
+                dateRange.unshift(darr[0])
+            }
+        }
+        if (span == 'month') {
+            dateRange=[[...d.toDateString().split(' ')][1]+' '+[...d.toDateString().split(' ')][3]]
+            for (let i = 1; i < 12; i++){
+                d.setMonth(d.getMonth() - 1)
+                darr=[...d.toDateString().split(' ')]
+                dateRange.unshift(darr[1]+' '+darr[3])
+            }
+        }
+        limitData(dateRange)
+        setRange(dateRange)
+    }
+
+    const limitData = (rng) => {
+        let dee;
+        let values = [];
+        let periodTotal = 0;
+
+        let firstDate = new Date(rng[0])
+        const previousLogs = logData.filter(f => f.time < firstDate.getTime())
+        const previousTotals = previousLogs.reduce((sum, r) => sum + r.amount,0)
+        rng.forEach((element, index) => {
+            periodTotal = previousTotals;
+            if (index > 0)
+                    periodTotal = values[index-1];
+            logData.forEach((ele, index) => {
+                dee = new Date(parseInt(ele.time))
+                let deearr = [...dee.toDateString().split(' ')]
+                let deestr=`${deearr[1]} ${deearr[3]}`
+                if (deestr == element) {
+                    periodTotal += ele.amount;
+                }
+                
+            })
+            values.push(periodTotal)
+        });
+        setRangeValues(values)
+    }
     
     useEffect(() => {
+        rangeGenerator('month')
         setGraphData(data)
-    }, [])
+    }, [logData])
     
     return (
         <div>
