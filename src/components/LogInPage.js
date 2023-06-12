@@ -20,6 +20,7 @@ const LoginPage = () => {
         if (user.passWord != password)
             return setErr('wrong password!')
         localStorage.setItem('currentUser', user.id)
+        localStorage.setItem('currUsername', user.userName)
         setCurrUser(user)
         setErr(`logged as ${username}!`)
         console.log('USER', user)
