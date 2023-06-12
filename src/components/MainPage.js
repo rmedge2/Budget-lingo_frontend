@@ -111,7 +111,7 @@ const MainPage = () => {
             
             <div id="log-area">
                 {logData?logData.map((log, index) => (
-                    <Log key={log.time} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
+                    <Log className='single-log' key={log.time} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
                 )):null}
             </div>
         </div>

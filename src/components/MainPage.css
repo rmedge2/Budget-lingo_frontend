@@ -27,3 +27,6 @@ input{
     color: white;
     margin-bottom: 10px;
 }
+.log-box:hover{
+    background-color: rgb(240, 240, 240);
+}
