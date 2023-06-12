@@ -15,7 +15,7 @@ import SpendingReport from './Components/SpendingReport';
 function App() {
 
   const [currUser, setCurrUser]=useState('')
-  const [logData, setLogs] = useState([{ name: '', amount: null, time: '' }])
+  const [logData, setLogs] = useState([])
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
   const baseLink = 'http://localhost:3000/'
