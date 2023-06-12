@@ -59,7 +59,7 @@ const LoginPage = () => {
     useEffect(() => {
         fetchUsers()
         console.log(currUser)   
-    },[currUser])
+    },[])
     
     return (
         <div className="login-page">
