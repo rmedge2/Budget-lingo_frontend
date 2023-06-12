@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 }
-input{
+input, select {
     padding: 0px 10px;
     height: 28px;
     border-radius: 10px;
