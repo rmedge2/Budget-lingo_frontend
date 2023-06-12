@@ -16,15 +16,16 @@ function App() {
   const [currUser, setCurrUser]=useState('')
   const [logData, setLogs] = useState([{ name: '', amount: null, time: '' }])
   const [userData, setUsers]=useState([])
-  const [totalMoney, setTotalMoney]=useState(0)
+  const [totalMoney, setTotalMoney] = useState(0)
+  const baseLink='http://localhost:3000/'
   
   const getLogs = () => {
-    return fetch('http://localhost:3000/logs')
+    return fetch(`${baseLink}logs`)
       .then(res => res.json())
   }
 
   const getUsers = () => {
-    return fetch('http://localhost:3000/users')
+    return fetch(`${baseLink}users`)
       .then(res => res.json())
   }
 
@@ -50,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink }
       }>
         <Header />
         <Routes>

@@ -8,10 +8,9 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
     
     const [err, setErr] = useState('')
-    const link='http://localhost:3001/'
     
 
-    const{getUsers, setUsers, userData, currUser, setCurrUser}=useContext(BalanceData)
+    const{getUsers, setUsers, userData, currUser, setCurrUser, baseLink}=useContext(BalanceData)
     
     const checkCredentials = () => {
         console.log(userData)
@@ -24,7 +23,7 @@ const LoginPage = () => {
         setCurrUser(user)
         setErr(`logged as ${username}!`)
         console.log('USER', user)
-        window.location.href=`${link}mainpage`
+        window.location.href=`${baseLink}mainpage`
     }
 
     const addUser = async (data) => {
@@ -35,7 +34,7 @@ const LoginPage = () => {
         if (userData.find(user => user.userName == username))
             return setErr('username taken!')
         const jsonData = JSON.stringify(data)
-        const currentUser= await fetch(`${link}users`,
+        const currentUser= await fetch(`${baseLink}users`,
             {
                 method: 'POST',
                 headers: {

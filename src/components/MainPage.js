@@ -2,10 +2,11 @@ import './MainPage.css'
 import { useContext, useEffect, useState } from "react"
 import BalanceData from "./BalanceData"
 import Log from './Log'
+import LineGraph from './LineGraph'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink } = useContext(BalanceData)
 
     const [open, setOpen] = useState(['none', '+'])
     
@@ -25,7 +26,7 @@ const MainPage = () => {
 
     const postData = data => {
         const jsonData = JSON.stringify(data)
-        fetch('http://localhost:3000/logs',
+        fetch(`${baseLink}logs`,
             {
                 method: 'POST',
                 headers: {
@@ -100,6 +101,7 @@ const MainPage = () => {
     
     return (
         <div className='main-page-content'>
+            {/* <LineGraph/> */}
             
             <h1>Total: ${totalMoney}</h1>
             <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
