@@ -30,3 +30,6 @@ input{
 .log-box:hover{
     background-color: rgb(240, 240, 240);
 }
+.submit-area>input{
+    margin-bottom: 5px;
+}
