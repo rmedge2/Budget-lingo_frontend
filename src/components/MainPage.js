@@ -7,7 +7,8 @@ const MainPage = () => {
 
     const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney } = useContext(BalanceData)
 
-    const[open,setOpen]=useState(['none','+'])
+    const [open, setOpen] = useState(['none', '+'])
+    
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')

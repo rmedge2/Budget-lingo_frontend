@@ -13,7 +13,7 @@ import Overview from './Components/Overview';
 
 function App() {
 
-
+  const [currUser, setCurrUser]=useState('')
   const [logData, setLogs] = useState([{ name: '', amount: null, time: '' }])
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney]=useState(0)
@@ -39,11 +39,18 @@ function App() {
   const shorten = words => {
         return words.length<15?words:`${words.substring(0,15)}...`
   }
+
+  useEffect(() => {
+    const userId = localStorage.getItem('currentUser')
+    console.log(userId)
+    if (userId)
+      setCurrUser(userData.find(usr => usr.id == userId ))
+  },[userData])
   
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser }
       }>
         <Header />
         <Routes>
