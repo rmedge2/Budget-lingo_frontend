@@ -74,7 +74,6 @@ const LineGraph = () => {
                 
             })
             values.push(periodTotal)
-            console.log(values)
             
         });
         
