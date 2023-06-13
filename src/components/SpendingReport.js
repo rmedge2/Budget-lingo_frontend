@@ -10,7 +10,7 @@ const SpendingReport = () => {
                 type="donut"
                 width="480"
                 options={{
-                    labels: ['Rent', 'Groceries', 'Transportation', 'Bills', 'Entertainment']
+                    labels: ['Rent', 'Groceries', 'Transportation', 'Bills', 'Entertainment', 'Miscellaneous']
                 }
                 }
             />
