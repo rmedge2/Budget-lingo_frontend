@@ -16,7 +16,7 @@ const Header = () => {
         if(currUser)
             console.log(currUser.userName)
         const usrd = localStorage.getItem('currUserData')
-        console.log(usrd.userName)
+        // console.log(usrd.userName)
         if (usrd)
             setCurrUser(usrd.userName)
     },[])
