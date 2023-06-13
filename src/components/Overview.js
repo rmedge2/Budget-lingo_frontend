@@ -19,7 +19,7 @@ const Overview = () => {
     const fetchTotal = async() => {
         const usrDta = await getUsers()
         const curr = usrDta.find(u => u.id == usrId)
-        setTotalMoney(curr.totalMoney)
+        setTotalMoney(curr.totalMoney?curr.totalMoney:0)
     }
 
     useEffect(() => {
