@@ -51,7 +51,6 @@ function App() {
     if (`${val}`.length < 3)
       return val
     let splv = (`${val}`.split('')).reverse()
-    console.log(splv)
     if (splv[splv.length-1] == '-')
       offset=-1
     let lim=splv.length
