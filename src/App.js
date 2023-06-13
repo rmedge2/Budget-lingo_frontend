@@ -61,7 +61,6 @@ function App() {
     }
     return (splv.reverse()).join('')
   }
-  commaAmount()
 
   useEffect(() => {
     const userId = localStorage.getItem('currUsername')
