@@ -11,7 +11,7 @@ const Overview = () => {
     
     
 
-    const { totalMoney, setTotalMoney, baseLink, getUsers, usrId, commaAmount } = useContext(BalanceData)
+    const { totalMoney, setTotalMoney, baseLink, getUsers, usrId, commaAmount, logData, showData } = useContext(BalanceData)
     
     const switchOpen = () => {
         setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
@@ -26,6 +26,8 @@ const Overview = () => {
     useEffect(() => {
         if (!totalMoney)
             fetchTotal()
+        if (!logData)
+            showData()
     },[])
     
     return (
