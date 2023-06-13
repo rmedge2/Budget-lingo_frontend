@@ -46,10 +46,10 @@ function App() {
   }
 
   useEffect(() => {
-    const userId = localStorage.getItem('currentUser')
+    const userId = localStorage.getItem('currUsername')
     console.log(userId)
     if (userId)
-      setCurrUser(userData.find(usr => usr.id == userId ))
+      setCurrUser(userId)
   },[userData])
   
   return (

@@ -1,8 +1,14 @@
+import { useContext } from "react"
+import BalanceData from "./BalanceData"
+
 const Overview = () => {
+
+    const {totalMoney}=useContext(BalanceData)
     
     return (
         <div>
-            Overview
+            <h1>Total Money: ${totalMoney}</h1>
+            
         </div>
     )
 }
