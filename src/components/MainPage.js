@@ -34,7 +34,7 @@ const MainPage = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: jsonData
+                body: jsonData,
             }
         )
     }
