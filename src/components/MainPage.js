@@ -6,7 +6,7 @@ import LineGraph from './LineGraph'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser, usrId } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser, usrId, commaAmount } = useContext(BalanceData)
 
     const [open, setOpen] = useState(['none', '+'])
 

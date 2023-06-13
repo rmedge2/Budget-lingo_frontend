@@ -46,7 +46,23 @@ function App() {
         return words.length<15?words:`${words.substring(0,15)}...`
   }
 
-
+  const commaAmount = val => {
+    let offset=0;
+    if (`${val}`.length < 3)
+      return val
+    let splv = (`${val}`.split('')).reverse()
+    console.log(splv)
+    if (splv[splv.length-1] == '-')
+      offset=-1
+    let lim=splv.length
+    for (let i = 1; i < lim + 1+offset; i++) {
+      if ((i % 4 == 0) && i != 0)
+        splv.splice(i - 1, 0, ',')
+      lim=splv.length
+    }
+    return (splv.reverse()).join('')
+  }
+  commaAmount()
 
   useEffect(() => {
     const userId = localStorage.getItem('currUsername')
@@ -58,7 +74,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId, commaAmount }
       }>
         <Header />
         <Routes>
