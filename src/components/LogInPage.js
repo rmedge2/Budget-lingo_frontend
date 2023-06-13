@@ -13,7 +13,6 @@ const LoginPage = () => {
     const{getUsers, setUsers, userData, currUser, setCurrUser, baseLink, frontLink}=useContext(BalanceData)
     
     const checkCredentials = () => {
-        console.log(userData)
         let user = userData.find(user => user.userName == username)
         if (!user)
             return setErr('no such user!')
@@ -23,7 +22,6 @@ const LoginPage = () => {
         localStorage.setItem('currUsername', user.userName)
         setCurrUser(user)
         setErr(`logged as ${username}!`)
-        console.log('USER', user)
         window.location.href=`${frontLink}mainpage`
     }
 
@@ -58,8 +56,7 @@ const LoginPage = () => {
         fetchUsers();
     }, [])
     useEffect(() => {
-        fetchUsers()
-        console.log(currUser)   
+        fetchUsers() 
     },[])
     
     return (

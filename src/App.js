@@ -18,8 +18,9 @@ function App() {
   const [logData, setLogs] = useState([])
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
-  const baseLink = 'http://localhost:3000/'
-  const frontLink='http://localhost:3001/'
+  const baseLink = 'http://localhost:3002/'
+  const frontLink = 'http://localhost:3001/'
+  const usrId = localStorage.getItem('currentUser')
   
   const getLogs = () => {
     return fetch(`${baseLink}logs`)
@@ -45,9 +46,35 @@ function App() {
         return words.length<15?words:`${words.substring(0,15)}...`
   }
 
+  const commaAmount = val => {
+    let offset=0;
+    if (`${val}`.length < 3)
+      return val
+    let splv = (`${val}`.split('')).reverse()
+    if (splv[splv.length-1] == '-')
+      offset=-1
+    let lim=splv.length
+    for (let i = 1; i < lim + 1+offset; i++) {
+      if ((i % 4 == 0) && i != 0)
+        splv.splice(i - 1, 0, ',')
+      lim=splv.length
+    }
+    return (splv.reverse()).join('')
+  }
+
+  const showData = async () => {
+    const data = await getLogs()
+    const usrId = localStorage.getItem('currentUser')
+    const logss = [...data.reverse()].filter(logs => logs.userId == usrId);
+    const logByTime = logss.sort((a, b) => {
+        return b.time - a.time
+    });
+
+    setLogs(logByTime)
+}
+
   useEffect(() => {
     const userId = localStorage.getItem('currUsername')
-    console.log(userId)
     if (userId)
       setCurrUser(userId)
   },[userData])
@@ -55,7 +82,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId, commaAmount, showData }
       }>
         <Header />
         <Routes>

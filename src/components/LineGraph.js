@@ -58,10 +58,9 @@ const LineGraph = () => {
         let periodTotal = 0;
 
         let firstDate = new Date(rng[0])
-        const previousLogs = logData.filter(f => f.time < firstDate.getTime())
-        const previousTotals = previousLogs.reduce((sum, r) => sum + r.amount,0)
+        const prevTotal=logData.reduce((sum, l)=>sum+(l.time<firstDate.getTime()?l.amount:0), 0)
         rng.forEach((element, index) => {
-            periodTotal = previousTotals;
+            periodTotal = prevTotal;
             if (index > 0)
                     periodTotal = values[index-1];
             logData.forEach((ele, index) => {
@@ -69,12 +68,14 @@ const LineGraph = () => {
                 let deearr = [...dee.toDateString().split(' ')]
                 let deestr=`${deearr[1]} ${deearr[3]}`
                 if (deestr == element) {
-                    periodTotal += ele.amount;
+                    periodTotal += parseInt(ele.amount);
                 }
                 
             })
             values.push(periodTotal)
+            
         });
+        
         setRangeValues(values)
     }
     
