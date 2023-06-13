@@ -41,8 +41,8 @@ const LoginPage = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: jsonData
-            }
+                body: jsonData,
+            },
         )
         setCurrUser(currentUser)   
         setErr('registered!')
