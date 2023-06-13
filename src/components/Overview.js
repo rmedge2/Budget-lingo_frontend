@@ -55,13 +55,24 @@ const Overview = () => {
         setGoalDeadline(timeInt.getTime())
     }
 
+    const fetchGoals = async() => {
+        const goals = await fetch(`${baseLink}goals`).then(res=>res.json());
+        setGoalList(goals)
+    }
+
     useEffect(() => {
         if (!totalMoney)
             fetchTotal()
         if (!logData)
             showData()
+        // if (!goalList)
+            fetchGoals()
     },[])
     
+    useEffect(() => {
+        console.log(goalList)
+    }, [goalList])
+
     return (
         <div className="goals-content">
             <h1>Total Money: ${commaAmount(totalMoney)}</h1>
@@ -74,7 +85,7 @@ const Overview = () => {
                 <button onClick={()=>handleAdd()}>Submit</button>
             </div>
             <div className="goal-display">
-
+                {/* {goalList?goalList.map(goal => (<div>fdsa</div>)):<div>dsaf</div>} */}
             </div>
         </div>
     )
