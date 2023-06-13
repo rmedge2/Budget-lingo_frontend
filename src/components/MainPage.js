@@ -6,7 +6,7 @@ import LineGraph from './LineGraph'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser, usrId, commaAmount } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser, usrId, commaAmount, showData } = useContext(BalanceData)
 
     const [open, setOpen] = useState(['none', '+'])
 
@@ -71,16 +71,7 @@ const MainPage = () => {
     }
 
 
-    const showData = async () => {
-        const data = await getLogs()
-        const usrId = localStorage.getItem('currentUser')
-        const logss = [...data.reverse()].filter(logs => logs.userId == usrId);
-        const logByTime = logss.sort((a, b) => {
-            return b.time - a.time
-        });
-
-        setLogs(logByTime)
-    }
+    
 
 
     const switchOpen = () => {

@@ -62,6 +62,17 @@ function App() {
     return (splv.reverse()).join('')
   }
 
+  const showData = async () => {
+    const data = await getLogs()
+    const usrId = localStorage.getItem('currentUser')
+    const logss = [...data.reverse()].filter(logs => logs.userId == usrId);
+    const logByTime = logss.sort((a, b) => {
+        return b.time - a.time
+    });
+
+    setLogs(logByTime)
+}
+
   useEffect(() => {
     const userId = localStorage.getItem('currUsername')
     if (userId)
@@ -71,7 +82,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId, commaAmount }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId, commaAmount, showData }
       }>
         <Header />
         <Routes>
