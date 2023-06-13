@@ -43,9 +43,12 @@ const LoginPage = () => {
                 body: jsonData,
             },
         )
-        setCurrUser(currentUser)   
+        console.log(currentUser)
+        window.location.reload()
+        // setCurrUser(currentUser)   
         setErr('registered!')
     }
+
 
     const fetchUsers = async () => {
         let data = await getUsers()
