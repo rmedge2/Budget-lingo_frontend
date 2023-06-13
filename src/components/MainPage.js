@@ -6,11 +6,11 @@ import LineGraph from './LineGraph'
 
 const MainPage = () => {
 
-    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser } = useContext(BalanceData)
+    const { logData, setLogs, getLogs, shorten, totalMoney, setTotalMoney, baseLink, setCurrUser, usrId } = useContext(BalanceData)
 
     const [open, setOpen] = useState(['none', '+'])
 
-
+    const[userid,setUserid]=useState(0)
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [category, setCategory] = useState('')
@@ -40,7 +40,8 @@ const MainPage = () => {
     }
 
     const handleClick = () => {
-        const usrId = localStorage.getItem('currentUser')
+        
+        setUserid(usrId)
         if (!name && !amount)
             return setError('No Data!')
         if (!name) {
@@ -85,6 +86,20 @@ const MainPage = () => {
         setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
     }
 
+    const putData = data => {
+        const jsonData = JSON.stringify(data)
+
+        fetch(`${baseLink}users/${usrId}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData,
+            }
+        )
+    }
     const drawdata = (startFunds) => {
         let runningTotals = [startFunds ? startFunds : 0];
         let thistotal = 0;
@@ -95,6 +110,7 @@ const MainPage = () => {
         }
         setRunningTotals(runningTotals)
         setTotalMoney(runningTotals[0])
+        putData({totalMoney:runningTotals[0]})
     }
 
     const handleTime = (val) => {

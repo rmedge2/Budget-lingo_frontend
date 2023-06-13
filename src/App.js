@@ -19,7 +19,8 @@ function App() {
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
   const baseLink = 'http://localhost:3002/'
-  const frontLink='http://localhost:3001/'
+  const frontLink = 'http://localhost:3001/'
+  const usrId = localStorage.getItem('currentUser')
   
   const getLogs = () => {
     return fetch(`${baseLink}logs`)
@@ -55,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <BalanceData.Provider value={
-        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink }
+        { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId }
       }>
         <Header />
         <Routes>
