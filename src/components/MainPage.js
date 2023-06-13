@@ -168,7 +168,7 @@ const MainPage = () => {
         <div className='main-page-content'>
             <LineGraph />
 
-            <h1>Total: ${totalMoney}</h1>
+            <h1>Total: ${commaAmount(totalMoney)}</h1>
             <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
             <div className='submit-area' style={{ display: open[0] }}>
                 <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
