@@ -127,6 +127,10 @@ const MainPage = () => {
             value: "Select Category"
         },
         {
+            label: "Food",
+            value: "Food"
+        },
+        {
             label: "Rent",
             value: "Rent"
         },
