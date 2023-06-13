@@ -18,7 +18,7 @@ function App() {
   const [logData, setLogs] = useState([])
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
-  const baseLink = 'http://localhost:3000/'
+  const baseLink = 'http://localhost:3002/'
   const frontLink='http://localhost:3001/'
   
   const getLogs = () => {
