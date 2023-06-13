@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import BalanceData from "./BalanceData"
 
 const Overview = () => {
@@ -6,14 +6,26 @@ const Overview = () => {
     const [open, setOpen] = useState(['flex', '+'])
     const [goalName, setGoalName] = useState('')
     const [goalAmount, setGoalAmount] = useState('')
-    const [goalDeadline, setGoalDeadline]=useState(Date.now()+(7*24*60*60*1000))
+    const [goalDeadline, setGoalDeadline] = useState(Date.now() + (7 * 24 * 60 * 60 * 1000))
+    
     
 
-    const { totalMoney } = useContext(BalanceData)
+    const { totalMoney, setTotalMoney, baseLink, getUsers, usrId } = useContext(BalanceData)
     
     const switchOpen = () => {
         setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
     }
+
+    const fetchTotal = async() => {
+        const usrDta = await getUsers()
+        const curr = usrDta.find(u => u.id == usrId)
+        setTotalMoney(curr.totalMoney)
+    }
+
+    useEffect(() => {
+        if (!totalMoney)
+            fetchTotal()
+    },[])
     
     return (
         <div>

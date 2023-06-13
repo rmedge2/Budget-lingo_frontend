@@ -46,6 +46,8 @@ function App() {
         return words.length<15?words:`${words.substring(0,15)}...`
   }
 
+
+
   useEffect(() => {
     const userId = localStorage.getItem('currUsername')
     console.log(userId)
