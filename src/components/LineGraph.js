@@ -69,12 +69,15 @@ const LineGraph = () => {
                 let deearr = [...dee.toDateString().split(' ')]
                 let deestr=`${deearr[1]} ${deearr[3]}`
                 if (deestr == element) {
-                    periodTotal += ele.amount;
+                    periodTotal += parseInt(ele.amount);
                 }
                 
             })
             values.push(periodTotal)
+            console.log(values)
+            
         });
+        
         setRangeValues(values)
     }
     
