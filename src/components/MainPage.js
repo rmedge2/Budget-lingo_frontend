@@ -23,6 +23,7 @@ const MainPage = () => {
         setName('');
         setAmount('');
         setTime(Date.now())
+        setCategory('')
     }
 
     const postData = data => {
@@ -58,7 +59,7 @@ const MainPage = () => {
             userId: usrId,
             name: name,
             amount: amount,
-            category: category,
+            expenseCategory: category,
             time: time
         }
         setLogs([newLog, ...logData])
@@ -91,7 +92,7 @@ const MainPage = () => {
         for (let i = logData.length; i >= 0; i--) {
             if (i < logData.length)
                 thistotal = parseInt(runningTotals[0]) + parseInt(logData[i].amount);
-                runningTotals.unshift(thistotal)
+            runningTotals.unshift(thistotal)
         }
         setRunningTotals(runningTotals)
         setTotalMoney(runningTotals[0])
@@ -137,7 +138,15 @@ const MainPage = () => {
         {
             label: "Entertainment",
             value: "Entertainment"
+        },
+        {
+            label: "Miscellaneous",
+            value: "Miscellaneous"
         }]
+
+    const handleOptionChange = (e) => {
+        setCategory(e.target.value);
+    }
 
     return (
         <div className='main-page-content'>
@@ -148,9 +157,11 @@ const MainPage = () => {
             <div className='submit-area' style={{ display: open[0] }}>
                 <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
                 <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
-                <select placeholder='select category'>
+                <select value={category} onChange={(e) => handleOptionChange(e)}>
                     {categoryOptions.map((option) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
                     ))}
                 </select>
                 <input type="date" onChange={e => handleTime(e.target.value)} />
