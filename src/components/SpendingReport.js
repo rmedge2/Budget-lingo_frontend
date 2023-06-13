@@ -8,12 +8,12 @@ const SpendingReport = () => {
     // let [seriesArray, setSerriesArray] = useState([])
     // const [labelsArray, setLabelsArray] = useState([])
 
-    const chartInfo = () => {
-        // setIsLoading(true)
-        fetch('http://localhost:3000/logs')
-            .then(response => response.json())
-            .then(data => setChartData(data))
-    }
+    // const chartInfo = () => {
+    //     // setIsLoading(true)
+    //     fetch('http://localhost:3000/logs')
+    //         .then(response => response.json())
+    //         .then(data => setChartData(data))
+    // }
 
     const { logData } = useContext(BalanceData)
 
@@ -23,7 +23,7 @@ const SpendingReport = () => {
 
     // })
 
-    useEffect(chartInfo)
+    // useEffect(chartInfo)
 
     return (
         <>
