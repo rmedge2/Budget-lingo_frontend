@@ -27,7 +27,7 @@ const Log = (props) => {
                 </div>
             </div>
             {/* <button className='edit'>edit</button> */}
-            <img className='edit-icon' src={require('../Edit_icon_(the_Noun_Project_30184).svg.png')} alt="edit" />
+            {/* <img className='edit-icon' src={require('../Edit_icon_(the_Noun_Project_30184).svg.png')} alt="edit" /> */}
         </div>
     )
 }
