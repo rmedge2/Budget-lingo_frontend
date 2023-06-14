@@ -9,7 +9,7 @@ import BalanceData from './components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import Overview from './components/Overview';
-import SpendingReport from './Components/SpendingReport';
+import SpendingReport from './components/SpendingReport';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
   const baseLink = 'https://budget-lingo-database.onrender.com/'
-  const frontLink = 'http://localhost:3001/'
+  const frontLink = 'https://budget-lingo.onrender.com/'
   const usrId = localStorage.getItem('currentUser')
   
   const getLogs = () => {
