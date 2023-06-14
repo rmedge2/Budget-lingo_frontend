@@ -79,7 +79,10 @@ const MainPage = () => {
     }
 
     const putData = data => {
+        if (!usrId)
+            return
         const jsonData = JSON.stringify(data)
+
 
         fetch(`${baseLink}users/${usrId}`,
             {
