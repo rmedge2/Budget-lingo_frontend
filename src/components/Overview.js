@@ -4,7 +4,7 @@ import './Overview.css'
 
 const Overview = () => {
 
-    const [open, setOpen] = useState(['flex', '+'])
+    const [open, setOpen] = useState(['none', '+'])
     const [goalName, setGoalName] = useState('')
     const [goalAmount, setGoalAmount] = useState('')
     const [goalDeadline, setGoalDeadline] = useState(Date.now() + (7 * 24 * 60 * 60 * 1000))
@@ -12,7 +12,7 @@ const Overview = () => {
     
     
 
-    const { totalMoney, setTotalMoney, baseLink, getUsers, usrId, commaAmount, logData, showData } = useContext(BalanceData)
+    const { totalMoney, setTotalMoney, baseLink, getUsers, usrId, commaAmount, logData, showData, convertDate } = useContext(BalanceData)
     
     const switchOpen = () => {
         setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
@@ -60,17 +60,27 @@ const Overview = () => {
         setGoalList(goals)
     }
 
+    const getAdditions = (l,t) => {
+        let total = [...logData.filter(ld => ld.name == l && ld.amount < 0)].reduce((sum, a) => sum + a.amount, 0)
+        total=Math.abs(total)
+        if (!total)
+            return 0
+        const percent=Math.floor((total/t)*100)
+        return `${commaAmount(total)} (${percent}%)`
+    }
+
+
     useEffect(() => {
         if (!totalMoney)
             fetchTotal()
-        if (!logData)
+        // if (!logData)
             showData()
         // if (!goalList)
             fetchGoals()
     },[])
     
     useEffect(() => {
-        console.log(goalList)
+
     }, [goalList])
 
     return (
@@ -85,7 +95,18 @@ const Overview = () => {
                 <button onClick={()=>handleAdd()}>Submit</button>
             </div>
             <div className="goal-display">
-                {/* {goalList?goalList.map(goal => (<div>fdsa</div>)):<div>dsaf</div>} */}
+                {goalList ? goalList.map((goal, index) => (
+                    <div key={index} className="goal-log">
+                        <div className="name-amount-goal">
+                            <h1>{goal.name}</h1>
+                            <h6>${commaAmount(goal.amount)}</h6>
+                        </div>
+                        <div className="deadline-amount">
+                            <h4>{convertDate(goal.deadline)}</h4>
+                            <h6>${getAdditions(goal.name, goal.amount)}</h6>
+                        </div>
+                        
+                </div>)):null}
             </div>
         </div>
     )

@@ -12,3 +12,18 @@
     height: 28px;
     border-radius: 10px;
 }
+.name-amount-goal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deadline-amount{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.goal-log{
+    width: 300px;
+    margin-top: 20px;
+}

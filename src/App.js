@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './Components/Header';
+import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './Components/MainPage';
-import LoginPage from './Components/LogInPage';
-import SplashScreen from './Components/SplashScreen/SplashScreen';
-import BalanceData from './Components/BalanceData'
+import MainPage from './components/MainPage';
+import LoginPage from './components/LogInPage';
+import SplashScreen from './components/SplashScreen/SplashScreen';
+import BalanceData from './components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import Overview from './Components/Overview';
+import Overview from './components/Overview';
 import SpendingReport from './Components/SpendingReport';
 
 
@@ -18,7 +18,7 @@ function App() {
   const [logData, setLogs] = useState([])
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
-  const baseLink = 'http://localhost:3000/'
+  const baseLink = 'https://budget-lingo-database.onrender.com/'
   const frontLink = 'http://localhost:3001/'
   const usrId = localStorage.getItem('currentUser')
   
