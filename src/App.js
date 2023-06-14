@@ -8,7 +8,7 @@ import SplashScreen from './components/SplashScreen/SplashScreen';
 import BalanceData from './components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import Overview from './Components/Overview';
+import Overview from './components/Overview';
 import SpendingReport from './Components/SpendingReport';
 
 
