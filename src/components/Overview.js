@@ -46,7 +46,9 @@ const Overview = () => {
             return console.log('no deadline')
         if (!usrId)
             return console.log('no usr')
-        addGoal({userId:usrId, name:goalName, amount:goalAmount, deadline:goalDeadline})
+        const newGoal={ userId: usrId, name: goalName, amount: goalAmount, deadline: goalDeadline }
+        addGoal(newGoal)
+        setGoalList([newGoal, ...goalList])
         
     }
 
@@ -56,8 +58,9 @@ const Overview = () => {
     }
 
     const fetchGoals = async() => {
-        const goals = await fetch(`${baseLink}goals`).then(res=>res.json());
-        setGoalList(goals)
+        const goals = await fetch(`${baseLink}goals`).then(res => res.json());
+        const userGoals=goals.filter(logs => logs.userId == usrId)
+        setGoalList(userGoals)
     }
 
     const getAdditions = (l,t) => {

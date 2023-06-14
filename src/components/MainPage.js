@@ -169,8 +169,8 @@ const MainPage = () => {
                 <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
                 <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
                 <select value={category} onChange={(e) => handleOptionChange(e)}>
-                    {categoryOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
+                    {categoryOptions.map((option, index) => (
+                        <option key={index} value={option.value}>
                             {option.label}
                         </option>
                     ))}
@@ -182,7 +182,7 @@ const MainPage = () => {
 
             <div id="log-area">
                 {logData ? logData.map((log, index) => (
-                    <Log className='single-log' key={log.created_at} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
+                    <Log className='single-log' key={index} name={log.name} amount={log.amount} time={log.time} total={runTotals[index]} />
                 )) : null}
             </div>
         </div>

@@ -20,7 +20,9 @@ const LoginPage = () => {
             return setErr('wrong password!')
         localStorage.setItem('currentUser', user.id)
         localStorage.setItem('currUsername', user.userName)
-        setCurrUser(user)
+        // setCurrUser(user)
+        setCurrUser(user.userName)
+
         setErr(`logged as ${username}!`)
         // window.location.href=`${frontLink}mainpage`
     }
@@ -33,6 +35,7 @@ const LoginPage = () => {
         if (userData.find(user => user.userName == username))
             return setErr('username taken!')
         const jsonData = JSON.stringify(data)
+        console.log(jsonData)
         const currentUser= await fetch(`${baseLink}users`,
             {
                 method: 'POST',
@@ -43,7 +46,7 @@ const LoginPage = () => {
                 body: jsonData,
             },
         ).then(res=>res.json())
-        console.log(currentUser)
+        setCurrUser(currentUser.userName)
         // window.location.reload()
         // setCurrUser(currentUser)   
         setErr('registered!')
