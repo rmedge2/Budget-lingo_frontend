@@ -66,7 +66,7 @@ const Overview = () => {
         if (!total)
             return 0
         const percent=Math.floor((total/t)*100)
-        return `${total} (${percent}%)`
+        return `${commaAmount(total)} (${percent}%)`
     }
 
 
@@ -95,8 +95,8 @@ const Overview = () => {
                 <button onClick={()=>handleAdd()}>Submit</button>
             </div>
             <div className="goal-display">
-                {goalList ? goalList.map(goal => (
-                    <div className="goal-log">
+                {goalList ? goalList.map((goal, index) => (
+                    <div key={index} className="goal-log">
                         <div className="name-amount-goal">
                             <h1>{goal.name}</h1>
                             <h6>${commaAmount(goal.amount)}</h6>
