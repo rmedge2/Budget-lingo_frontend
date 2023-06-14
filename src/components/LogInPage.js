@@ -44,7 +44,7 @@ const LoginPage = () => {
             },
         )
         console.log(currentUser)
-        window.location.reload()
+        // window.location.reload()
         // setCurrUser(currentUser)   
         setErr('registered!')
     }
