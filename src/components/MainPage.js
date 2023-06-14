@@ -162,9 +162,13 @@ const MainPage = () => {
         setCategory(e.target.value);
     }
 
+    const changeSpacing = () => {
+        return logData[0]?'-400px':'0px'
+    }
+
     return (
         <div className='main-page-content'>
-            <div className='left-side'>
+            <div className='left-side' style={{marginLeft:changeSpacing()}}>
 
             
             <LineGraph />
