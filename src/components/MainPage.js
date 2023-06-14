@@ -164,23 +164,30 @@ const MainPage = () => {
 
     return (
         <div className='main-page-content'>
+            <div className='left-side'>
+
+            
             <LineGraph />
 
-            <h1>Total: ${commaAmount(totalMoney)}</h1>
-            <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
-            <div className='submit-area' style={{ display: open[0] }}>
-                <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
-                <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
-                <select value={category} onChange={(e) => handleOptionChange(e)}>
-                    {categoryOptions.map((option, index) => (
-                        <option key={index} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <input type="date" onChange={e => handleTime(e.target.value)} />
-                <button className='submit-button' onClick={() => handleClick()}>Submit</button>
-                <p style={{ color: 'red' }}>{err}</p>
+                <h1>Total: ${commaAmount(totalMoney)}</h1>
+                <div className="submission">
+                    <div className='add-item' onClick={() => switchOpen()}>Add an item {open[1]}</div>
+                    <div className='submit-area' style={{ display: open[0] }}>
+                        <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
+                        <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
+                        <select value={category} onChange={(e) => handleOptionChange(e)}>
+                            {categoryOptions.map((option, index) => (
+                                <option key={index} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        <input type="date" onChange={e => handleTime(e.target.value)} />
+                        <button className='submit-button' onClick={() => handleClick()}>Submit</button>
+                        <p style={{ color: 'red' }}>{err}</p>
+                    </div>
+                </div>
+                
             </div>
 
             <div id="log-area">
