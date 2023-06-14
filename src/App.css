@@ -37,6 +37,9 @@
   }
 }
 
+.App{
+  font-family: 'Geologica', sans-serif;
+}
 
 .active-link {
   font-weight: bold;
