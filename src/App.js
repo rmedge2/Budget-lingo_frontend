@@ -84,15 +84,20 @@ function App() {
       <BalanceData.Provider value={
         { logData, setLogs, getLogs,userData, setUsers, getUsers, convertDate, shorten, totalMoney, setTotalMoney, currUser, setCurrUser, baseLink, frontLink, usrId, commaAmount, showData }
       }>
+    
         <Header />
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/mainpage' element={<MainPage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/splashscreen' element={<SplashScreen />} />
-          <Route path='/overview' element={<Overview/>}/>
-          <Route path='/spending-report' element={<SpendingReport/>}/>
-        </Routes>
+        <div className='main'>
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/mainpage' element={<MainPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/splashscreen' element={<SplashScreen />} />
+            <Route path='/overview' element={<Overview/>}/>
+            <Route path='/spending-report' element={<SpendingReport/>}/>
+          </Routes>
+
+        </div>
+        
       </BalanceData.Provider>
     </div>
   );

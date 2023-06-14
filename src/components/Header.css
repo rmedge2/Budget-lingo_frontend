@@ -5,6 +5,12 @@
 .header-area{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    background-color: white;
+    padding-top: 10px;
+    height: 40px;
 }
 
 .header-area>button{
