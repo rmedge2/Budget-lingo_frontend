@@ -10,6 +10,7 @@
 
 .log-date, .log-total{
     color: rgb(97, 96, 96);
+    font-weight: 100;
 }
 .log-box{
     display: flex;
