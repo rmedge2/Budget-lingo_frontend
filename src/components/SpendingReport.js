@@ -3,18 +3,7 @@ import Chart from 'react-apexcharts'
 import BalanceData from './BalanceData';
 
 const SpendingReport = () => {
-
-    const [chartData, setChartData] = useState([])
-
-    const { baseLink } = useContext(BalanceData)
-
-    // const loadChart = () => {
-    //     // setIsLoading(true)
-    //     fetch(`${baseLink}logs`)
-    //         .then(response => response.json())
-    //         .then(data => setChartData(data))
-    // }
-
+  
     const { logData, showData } = useContext(BalanceData)
 
     let labelArray = ['Food', 'Rent', 'Groceries', 'Transportation', 'Bills', 'Entertainment', 'Miscellaneous']
