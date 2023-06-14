@@ -50,6 +50,7 @@ const LoginPage = () => {
         // window.location.reload()
         // setCurrUser(currentUser)   
         setErr('registered!')
+        fetchUsers()
     }
 
 
@@ -61,9 +62,6 @@ const LoginPage = () => {
     useEffect(() => {
         fetchUsers();
     }, [])
-    useEffect(() => {
-        fetchUsers() 
-    },[])
     
     return (
         <div className="login-page">
