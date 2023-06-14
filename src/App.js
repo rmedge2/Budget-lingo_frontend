@@ -19,7 +19,7 @@ function App() {
   const [userData, setUsers]=useState([])
   const [totalMoney, setTotalMoney] = useState(0)
   const baseLink = 'https://budget-lingo-database.onrender.com/'
-  const frontLink = 'https://budget-lingo.onrender.com/'
+  const frontLink = 'http://localhost:3001/'
   const usrId = localStorage.getItem('currentUser')
   
   const getLogs = () => {
