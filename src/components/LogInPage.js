@@ -42,7 +42,7 @@ const LoginPage = () => {
                 },
                 body: jsonData,
             },
-        )
+        ).then(res=>res.json())
         console.log(currentUser)
         // window.location.reload()
         // setCurrUser(currentUser)   
