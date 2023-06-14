@@ -9,7 +9,7 @@ import BalanceData from './components/BalanceData'
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import Overview from './components/Overview';
-import SpendingReport from './Components/SpendingReport';
+import SpendingReport from './components/SpendingReport';
 
 
 function App() {

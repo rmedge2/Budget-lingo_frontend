@@ -1,16 +1,23 @@
-.header-row{
+.header-row {
     display: flex;
     justify-content: center;
     width: 800px;
     height: 360px;
 }
-.bodyOdyOdy{
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-around;
-}
-.randomInfoRow{
+
+
+.paragraph-box {
     display: flex;
 }
+
+.head-shot1 {
+    width: 320px;
+    /* height: 240px; */
+    border-radius: 100%;
+}
+
+.head-shot2{
+    width:390px;
+    border-radius: 100%;
+}
+
