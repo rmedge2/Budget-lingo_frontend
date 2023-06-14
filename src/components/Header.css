@@ -1,3 +1,15 @@
 .link-box{
     margin-bottom: 20px;
 }
+
+.header-area{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-area>button{
+    border: none;
+    background-color: white;
+    height:25px;
+    font-weight: 100;
+}

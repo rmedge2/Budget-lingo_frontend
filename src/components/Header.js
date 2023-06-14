@@ -5,7 +5,7 @@ import './Header.css'
 
 const Header = () => {
 
-    const {currUser, setCurrUser}=useContext(BalanceData)
+    const {currUser, setCurrUser, setTotalMoney, setLogs}=useContext(BalanceData)
 
     let link = {
         padding: '0px 10px',
@@ -22,7 +22,7 @@ const Header = () => {
     },[])
     
     return (
-        <div>
+        <div className="header-area">
              <nav className='link-box'>
                 <NavLink style={link} className={({isActive}) => isActive ? "active-link" : "inactive-link"} to='/splashscreen'>About</NavLink>
                 <NavLink style={link} className={({ isActive }) => isActive ? "active-link" : "inactive-link"} to='/login'>{ currUser?currUser:'Log In'}</NavLink>
@@ -31,6 +31,13 @@ const Header = () => {
                 <NavLink style={link} className={({isActive}) => isActive ? "active-link" : "inactive-link"} to='/spending-report'>Spending Report</NavLink>
 
             </nav>
+            <button onClick={() => {
+                localStorage.clear();
+                setCurrUser('')
+                setTotalMoney(0)
+                setLogs([])
+            }
+            }>Log Out</button>
         </div>
     )
 }

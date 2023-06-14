@@ -18,7 +18,9 @@ const Overview = () => {
         setOpen(open[0] == 'flex' ? ['none', '+'] : ['flex', '-'])
     }
 
-    const fetchTotal = async() => {
+    const fetchTotal = async () => {
+        if (!usrId)
+            return
         const usrDta = await getUsers()
         const curr = usrDta.find(u => u.id == usrId)
         setTotalMoney(curr.totalMoney?curr.totalMoney:0)
@@ -75,7 +77,8 @@ const Overview = () => {
 
     useEffect(() => {
         if (!totalMoney)
-            fetchTotal()
+            if(!!usrId)
+                fetchTotal()
         // if (!logData)
             showData()
         // if (!goalList)
@@ -88,7 +91,7 @@ const Overview = () => {
 
     return (
         <div className="goals-content">
-            <h1>Total Money: ${commaAmount(totalMoney)}</h1>
+            <h1>Total Money: ${totalMoney?commaAmount(totalMoney):0}</h1>
             <div onClick={() => switchOpen()} className="add-goal">Add a goal {open[1]}</div>
             <div className="goal-input-box" style={{ display: open[0] }}>
                 <input type="text" placeholder='input name' onInput={e=>setGoalName(e.target.value)}/>
