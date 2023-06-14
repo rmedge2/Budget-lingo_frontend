@@ -20,11 +20,11 @@ const LoginPage = () => {
             return setErr('wrong password!')
         localStorage.setItem('currentUser', user.id)
         localStorage.setItem('currUsername', user.userName)
-        // setCurrUser(user)
+        
         setCurrUser(user.userName)
 
         setErr(`logged as ${username}!`)
-        // window.location.href=`${frontLink}mainpage`
+    
     }
 
     const addUser = async (data) => {
@@ -46,9 +46,7 @@ const LoginPage = () => {
                 body: jsonData,
             },
         ).then(res=>res.json())
-        setCurrUser(currentUser.userName)
-        // window.location.reload()
-        // setCurrUser(currentUser)   
+        setCurrUser(currentUser.userName) 
         setErr('registered!')
         fetchUsers()
     }

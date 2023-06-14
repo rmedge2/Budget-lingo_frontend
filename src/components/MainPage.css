@@ -41,7 +41,7 @@ input, select {
 }
 
 .submit-area>input{
-    margin-bottom: 5px;
+    margin:5px 0px;
 }
 .left-side{
     margin-right: 20px;
@@ -55,6 +55,10 @@ input, select {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.category-select{
+    border: 2px solid black;
+    margin-bottom:px;
 }
 
 @media (max-width: 870px) {

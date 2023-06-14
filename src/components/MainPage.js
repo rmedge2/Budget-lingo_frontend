@@ -179,7 +179,7 @@ const MainPage = () => {
                     <div className='submit-area' style={{ display: open[0] }}>
                         <input type="text" placeholder="input name" value={name} onInput={(e) => setName(e.target.value)} />
                         <input type="number" placeholder="input amount" value={amount} onInput={(e) => setAmount(e.target.value)} />
-                        <select value={category} onChange={(e) => handleOptionChange(e)}>
+                        <select className='category-select' value={category} onChange={(e) => handleOptionChange(e)}>
                             {categoryOptions.map((option, index) => (
                                 <option key={index} value={option.value}>
                                     {option.label}
