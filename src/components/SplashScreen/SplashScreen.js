@@ -8,26 +8,25 @@ const SplashScreen = () => {
 
     return (
         <>
-            <header className="header-row">
-                <div className="pageTitleBox">
-                    <h2>The Creators of Budget Lingo</h2>
-                </div>
-                {/* <Image className='TitleBoxImg' src="https://c8.alamy.com/comp/M0YFXF/group-of-multi-ethnic-business-people-reading-books-against-white-M0YFXF.jpg" fluid /> */}
-            </header>
+
+            <div className="pageTitleBox">
+                <h2>The Creators of Budget Lingo</h2>
+            </div>
+
             <div className="paragraph-box">
-                <p >
+                <p id='text-box1'>
                     Budget Lingo was an app created by Conrad Quagliaroli and Rodney Edge Jr.
                     The app is designed for those who have taken an interest in their own finances,
                     and are just now learning to budget.
                 </p>
-                <div className='img-crop'>
+                <div className='img-container'>
                     <img className='head-shot1' src={conrad_headshot} alt='My Image' />
                 </div>
             </div>
             <div className="paragraph-box">
                 <img className='head-shot2' src={rodney_headshot} />
-                <p>
-                    This app is NOT designed for the professional investors, but rather the average joe who 
+                <p id='text-box2'>
+                    This app is NOT designed for the professional investors, but rather the average joe who
                     wants to form those good budgeting habits, which include LOGGINNG where your money goes.
                 </p>
             </div>
