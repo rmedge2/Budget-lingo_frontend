@@ -22,7 +22,7 @@ const LoginPage = () => {
         localStorage.setItem('currUsername', user.userName)
         setCurrUser(user)
         setErr(`logged as ${username}!`)
-        window.location.href=`${frontLink}mainpage`
+        // window.location.href=`${frontLink}mainpage`
     }
 
     const addUser = async (data) => {
