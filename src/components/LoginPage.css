@@ -16,3 +16,17 @@
     border-radius: 10px;
     
 }
+.password-box{
+    margin-left: 36px;
+}
+
+
+.visibility{
+    background-color: white;
+    border: none;
+    transform: translate(0px, 6px);
+    
+}
+.material-symbols-outlined{
+
+}

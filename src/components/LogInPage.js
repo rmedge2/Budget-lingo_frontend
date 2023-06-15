@@ -6,6 +6,7 @@ const LoginPage = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [seePw, setVisiblePassword]=useState(['password','visibility'])
     
     const [err, setErr] = useState('')
     
@@ -57,6 +58,12 @@ const LoginPage = () => {
         setUsers(data)
     }
 
+    const toggleVisibility = () => {
+        if (seePw[0] == 'password')
+            return setVisiblePassword(['text','visibility_off'])
+        return setVisiblePassword(['password','visibility'])
+    }
+
     useEffect(() => {
         fetchUsers();
     }, [])
@@ -74,7 +81,12 @@ const LoginPage = () => {
                 <div>
                     Password: 
                 </div>
-                <input type="text" onChange={e=>setPassword(e.target.value)}/>
+                <input type={seePw[0]} onChange={e => setPassword(e.target.value)} />
+                <button className='visibility' onClick={() => toggleVisibility()}>
+                <span className="material-symbols-outlined">
+                    {seePw[1]}
+                </span>
+                </button>
             </div>
             <div className="login-register">
                 <button onClick={() => checkCredentials()}>Log in</button>
