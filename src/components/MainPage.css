@@ -68,7 +68,7 @@ input, select {
     }
     .left-side{
         position: relative;
-        margin-left: 0;
+        padding-left: 400px;
     }
     #log-area{
         margin-left: 0;
